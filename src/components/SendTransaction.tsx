@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { parseEther } from "viem";
 import {
   useAccount,
@@ -14,6 +14,9 @@ export const SendTransaction = () => {
   const { address } = useAccount();
   const { data: dataBalance, isLoading: loadingBalance } = useBalance({
     address: address,
+    query: {
+      refetchInterval: 5000,
+    },
   });
   const { data, sendTransaction, error: sendError } = useSendTransaction();
 
